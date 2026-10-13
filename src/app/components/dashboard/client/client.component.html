@@ -1,0 +1,49 @@
+<div class="item">
+  <div class="profile mb-4">
+    <img src="assets\images\client.png" alt="admin logo" class="img-fluid">
+    <h5 class="mb-0">{{infoClients().name}}</h5>
+  </div>
+  <div class="row row3">
+    <div class="col-4 mb-4">
+      <div class="items">
+        <h6 class="ms-2 mb-0">Email :</h6>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="items">
+        <h6 class="ms-2 mb-0">{{infoClients().email}}</h6>
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="items">
+        <h6 class="ms-2 mb-0">Gender :</h6>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="items">
+        <h6 class="ms-2 mb-0">{{infoClients().gender}}</h6>
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="items">
+        <h6 class="ms-2 mb-0">Age :</h6>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="items">
+        <h6 class="ms-2 mb-0">{{infoClients().age}}</h6>
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="items">
+        <h6 class="ms-2 mb-0">Job Title :</h6>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="items">
+        <h6 class="ms-2 mb-0">{{infoClients().jobTitle}}</h6>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-danger w-100 text-light" (click)="runBtnBan()">Ban</button>
+</div>

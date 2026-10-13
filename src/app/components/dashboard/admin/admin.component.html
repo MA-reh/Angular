@@ -1,0 +1,29 @@
+<div class="item">
+  <div class="profile mb-4">
+    <img src="assets\images\admin.png" alt="admin logo" class="img-fluid">
+    <h5 class="mb-0">{{infoAdmin().name ?? "undefined"}}</h5>
+  </div>
+  <div class="row row3">
+    <div class="col-4 mb-4">
+      <div class="items">
+        <h6 class="ms-2 mb-0">Email :</h6>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="items">
+        <h6 class="ms-2 mb-0">{{infoAdmin().email ?? "undefined"}}</h6>
+      </div>
+    </div>
+    <div class="col-4 mb-4">
+      <div class="items">
+        <h6 class="ms-2 mb-0">Gender :</h6>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="items">
+        <h6 class="ms-2 mb-0">{{infoAdmin().gender ?? "undefined"}}</h6>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-danger w-100 text-light" (click)="runBtnBan()">Ban</button>
+</div>

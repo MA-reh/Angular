@@ -1,0 +1,70 @@
+<div class="container">
+
+
+  <form class="w-25 mx-auto" ngForm #register="ngForm" (submit)="myForm(register)">
+    <h1 class="title my-4 text-center">
+      Register
+    </h1>
+    <div class="mb-4">
+      <label for="Type" class="form-label">Type : </label>
+      <select class="form-select" required name="type" id="Type" #type="ngModel" ngModel>
+        <option selected disabled hidden></option>
+        <option value="admin">Admin</option>
+        <option value="client">Client</option>
+        <option value="trader">Trader</option>
+      </select>
+      @if ((type.touched && type.invalid) && type.errors) {
+      <p class="mt-2 alert alert-danger">
+        This Field is Required
+      </p>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="Name" class="form-label">Name : </label>
+      <input type="text" required name="userName" class="form-control" id="Name" #name="ngModel" ngModel>
+      @if ((name.touched && name.invalid) && name.errors) {
+      <p class="mt-2 alert alert-danger">
+        This Field is Required
+      </p>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="Email" class="form-label">Email :</label>
+      <input type="email" required name="email" class="form-control" id="Email" #email="ngModel" ngModel>
+      @if ((email.touched && email.invalid) && email.errors) {
+      <p class="mt-2 alert alert-danger">
+        This Field is Required
+      </p>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="Password" class="form-label">Password :</label>
+      <input type="password" required name="password" minlength="8" class="form-control" id="Password"
+        #password="ngModel" ngModel>
+      @if ((password.touched && password.invalid) && password.errors) {
+      <p class="mt-2 alert alert-danger">
+        This Field is Required <br>
+      </p>
+      } @else if (password.touched && password.errors?.['minlength']) {
+      <p class="mt-2 alert alert-danger">
+        this Field must be 8 characters <br>
+      </p>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="Gender" class="form-label">Gender : </label>
+      <select class="form-select" required name="gender" id="Gender" #gender="ngModel" ngModel>
+        <option selected disabled hidden value=""></option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      @if ((gender.touched && gender.invalid) && gender.errors) {
+      <p class="mt-2 alert alert-danger">
+        This Field is Required
+      </p>
+      }
+    </div>
+    <button type="submit" class="btn btn-success w-100">Register</button>
+  </form>
+
+</div>

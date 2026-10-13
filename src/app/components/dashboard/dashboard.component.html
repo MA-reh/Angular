@@ -1,0 +1,160 @@
+<div class="container-fluid">
+  <div class="row row1">
+    <div class="col-lg-3 user-data">
+      <div class="item">
+        <div class="user-img">
+          <img src="assets\images\default.png" alt="user image" class="img-fluid">
+        </div>
+        <div class="username mb-3 d-flex align-items-center justify-content-center">
+          <i class="fa-regular fa-pen-to-square" (click)="alerts('Edited', 'edit','User', 'Username')"></i>
+          <h5 class="ms-2 mb-0">Mohamed Ayman</h5>
+        </div>
+
+        <div class="row row2">
+          <div class="col-4 mb-3">
+            <div class="item d-flex align-items-center justify-content-start">
+              <i class="fa-regular fa-pen-to-square" (click)="alerts('Edited', 'edit','User', 'Email')"></i>
+              <h6 class="ms-2 mb-0">Email :</h6>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="item">
+              MohamedAyman<span>@</span>gmail.com
+            </div>
+          </div>
+          <div class="col-4 mb-3">
+            <div class="item d-flex align-items-center justify-content-start">
+              <i class="fa-regular fa-pen-to-square" (click)="alerts('Edited', 'edit','User', 'Gender')"></i>
+              <h6 class="ms-2 mb-0">Gender :</h6>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="item">
+              Male
+            </div>
+          </div>
+          <div class="col-4 mb-3">
+            <div class="item d-flex align-items-center justify-content-start">
+              <i class="fa-regular fa-pen-to-square" (click)="alerts('Edited', 'edit','User', 'Password')"></i>
+              <h6 class="ms-2 mb-0">Password :</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9 data">
+      <div class="item">
+        <nav class="mb-4">
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            @for (item of navBtns; track navBtns) {
+            <button class="nav-link {{($index == 0)?'active':''}}" id="nav-{{item}}-tab" data-bs-toggle="tab"
+              attr.data-bs-target="#nav-{{item}}" type="button" role="tab" aria-controls="nav-{{item}}"
+              aria-selected="{{($index == 0)? 'true': 'false'}}">{{item}}</button>
+            }
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-admins" role="tabpanel" aria-labelledby="nav-admins-tab"
+            tabindex="0">
+
+            <div class="row row2">
+              @for (admin of admins(); track admin) {
+              <app-admin [infoAdmin]="admin" class="infoUser col-lg-4 col-md-6 mb-3"
+                (banEvent)="alerts('Banded','areYouSure?','Admin')"></app-admin>
+              }
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="nav-clients" role="tabpanel" aria-labelledby="nav-clients-tab" tabindex="0">
+            <div class="row row2">
+              @for(client of clients(); track client){
+              <app-client [infoClients]="client" class="infoUser col-lg-4 col-md-6 mb-3"
+                (banEvent)="alerts('Banded','areYouSure?','Client')"></app-client>
+              }
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-products-tab" tabindex="0">
+            <div class="table-responsive">
+              <table class="table table-info table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">title</th>
+                    <th scope="col">price</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">status</th>
+                    <th scope="col">created_at</th>
+                    <th scope="col">Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  @for (product of products(); track product) {
+                  <tr>
+                    <th scope="row">{{product.id}}</th>
+                    <td>{{product.title}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{(product.quantity)}}</td>
+                    <td>
+                      <div [ngClass]="{'available': product.quantity != 0 , 'outStock': product.quantity == 0}">
+                        {{(product.quantity != 0)? "Available": "Out Of Stock"}}
+                      </div>
+                    </td>
+                    <td>{{product.created_at}}</td>
+                    <td>
+                      <div class="buttons">
+                        <button class="btn btn-info text-light me-2" data-bs-toggle="modal"
+                          attr.data-bs-target="#model{{$index}}">
+                          Edit
+                        </button>
+                        <button class="btn btn-danger text-light" (click)="alerts('Deleted', 'areYouSure?','Product')">
+                          Delete
+                        </button>
+                      </div>
+                      <div class="modal fade" id="model{{$index}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Product</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+
+                              <form>
+                                <div class="mb-3">
+                                  <label for="Title" class="form-label">Title :</label>
+                                  <input type="text" class="form-control" name="Title" id="Title">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="Price" class="form-label">Price :</label>
+                                  <input type="number" class="form-control" name="Price" id="Price">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="Quantity" class="form-label">Quantity :</label>
+                                  <input type="number" class="form-control" name="Quantity" id="Quantity">
+                                </div>
+                                <button type="submit" class="btn btn-info text-light ms-auto d-block"
+                                  (click)="alerts('Edited', '','Product')">Edit</button>
+                              </form>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  }
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
